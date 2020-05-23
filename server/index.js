@@ -12,6 +12,22 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/games/:id', express.static('public'));
 app.use(express.json());
 
+
+//CRUD
+
+                          //CREATE
+app.post('/api/addGame/:id', (req, res) => {
+  const newGame = req.body;
+  db.Game.save(newGame, err => {
+    if (err) {
+      res.send(500);
+    } else {
+      res.send(200);
+    }
+  });
+});
+
+                      //READ
 app.get('/api/games/:id', (req, res) => {
   let id = Number(path.basename(req.url));
   if (id < 0 || id > 100) {
@@ -26,6 +42,36 @@ app.get('/api/games/:id', (req, res) => {
       res.end();
     }
   });
+});
+
+                    //delete
+app.post('/api/deleteGame/:id', (req, res) => {
+  const gameId = req.body.id;
+  const gameToDelete = { id: gameId };
+  db.Game.deleteOne(gameToDelete, err => {
+    if(err) {
+      res.send(500);
+    } else {
+      res.send(200)
+    }
+  });
+})
+
+                    //update
+app.post('/api/update/:id', (req, res) => {
+  const filter = { id: req.body.id };
+  const update = { name: req.body.name,
+                   details: req.body.details,
+                   images: req.body.images
+                  };
+  db.Game.findOneAndUpdate(filter, update, (err) => {
+    if (err) {
+      res.send(500);
+    } else {
+      res.send(200);
+    }
+  });
+
 });
 
 app.listen(PORT, () => {
