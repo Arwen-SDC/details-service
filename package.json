@@ -4,12 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack -w",
     "seed": "node server/seed.js",
     "start": "nodemon server/index.js --ignore 'client/' --ignore 'public/'",
     "react-dev": "webpack -d --watch",
     "test": "jest --detectOpenHandles",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "fire": "artillery run artillery.yml"
   },
   "repository": {
     "type": "git",
@@ -27,12 +28,14 @@
     "babel-loader": "^8.1.0",
     "body-parser": "^1.19.0",
     "cassandra": "^0.1.0",
+    "cassandra-driver": "^4.5.2",
     "csv-write-stream": "^2.0.0",
     "express": "^4.17.1",
     "faker": "^4.1.0",
     "fs": "0.0.1-security",
     "jquery": "^3.5.1",
     "mongoose": "^5.9.10",
+    "newrelic": "^6.8.0",
     "path": "^0.12.7",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",

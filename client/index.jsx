@@ -30,8 +30,15 @@ class GameDetails extends React.Component {
     const gameId = window.location.pathname.match(/\/games\/(\d+)\//);
     axios.get(`/api/games/${gameId[1]}`)
       .then((res) => {
-        const { images } = res.data[0];
-        const dummyDetails = res.data[0].details;
+
+        //cass code
+        const images = res.data.rows[0].images;
+        const dummyDetails = res.data.rows[0].details;
+
+        //mongo code
+        // const { images } = res.data[0];
+        // const dummyDetails = res.data[0].details;
+
         this.updateState(images, dummyDetails);
       });
   }

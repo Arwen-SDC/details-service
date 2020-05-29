@@ -2,9 +2,9 @@ const fs = require('fs');
 const path = require('path');
 const faker = require('faker');
 
-const writePath = path.join(__dirname, '/../data.csv');
+const writePath = path.join(__dirname, '/../POSTGRES.csv');
 const writeUsers = fs.createWriteStream(writePath);
-writeUsers.write('id|name|details|images\n', 'utf8');
+writeUsers.write('id|details|images|name\n', 'utf8');
 
 let imageCounter = 1;
 
@@ -23,7 +23,6 @@ const getRandomImages = () => {
   return results;
 };
 
-
 function generator(writer, encoding, callback) {
   let i = 10000000;
   let id = 0;
@@ -32,7 +31,7 @@ function generator(writer, encoding, callback) {
     do {
       i -= 1;
       id += 1;
-      const data = `${id}|"${faker.lorem.paragraphs()}"|[${getRandomImages()}]|"${faker.commerce.productName()}"\n`;
+      const data = `${id}|"${faker.lorem.paragraph()}"|{${getRandomImages()}}|"${faker.commerce.productName()}"\n`;
       if (i === 0) {
         writer.write(data, encoding, callback);
       } else {

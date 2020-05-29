@@ -1,0 +1,14 @@
+gameschema=# EXPLAIN ANALYZE SELECT * FROM game where id = 4200200;
+                                                         QUERY PLAN
+----------------------------------------------------------------------------------------------------------------------------
+ Gather  (cost=1000.00..828193.88 rows=1 width=583) (actual time=68651.471..68666.084 rows=1 loops=1)
+   Workers Planned: 2
+   Workers Launched: 2
+   ->  Parallel Seq Scan on game  (cost=0.00..827193.78 rows=1 width=583) (actual time=53179.856..68621.739 rows=0 loops=3)
+         Filter: (id = 4200200)
+         Rows Removed by Filter: 3333333
+ Planning time: 2.374 ms
+ Execution time: 68666.627 ms
+(8 rows)
+
+Time: 68675.809 ms (01:08.676)
