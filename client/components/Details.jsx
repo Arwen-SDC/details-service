@@ -36,14 +36,6 @@ class Details extends React.Component {
             <b>{details.substr(0, details.indexOf('.') + 2)}</b>
             {details}
           </p>
-          <p>
-            <b>{details.substr(0, details.indexOf('.') + 2)}</b>
-            {details}
-          </p>
-          <p>
-            <b>{details.substr(0, details.indexOf('.') + 2)}</b>
-            {details}
-          </p>
         </>
         {hidden ? null : (
           <>
