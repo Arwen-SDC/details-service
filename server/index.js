@@ -30,15 +30,15 @@ app.post('/api/addGame/:id', (req, res) => {
 //READ
 app.get('/api/games/:id', (req, res) => {
   let id = Number(path.basename(req.url));
-  if (id < 0 || id > 100) {
-    id = 1;
-  }
+  // if (id < 0 || id > 100) {
+  //   id = 1;
+  // }
   db.getGame(id, (err, result) => {
     if (err) {
       res.sendStatus(500);
       res.end();
     } else {
-      console.log(result)
+      // console.log(result)
       res.send(result);
       res.end();
     }
